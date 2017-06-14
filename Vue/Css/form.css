@@ -1,0 +1,33 @@
+body{
+    background-image: url(pretty-woman-1509956_1280.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+ .form h2{
+   
+    color: black;
+     
+}
+
+.bouton{
+    color: black;
+    margin-top: 20px;
+}
+.form{
+   
+    width: 50%;
+    text-align: center;
+   margin-left: 300px;
+    //margin-top: 157px;
+ 
+ }
+fieldset{
+    margin-left:20px;
+   
+
+    
+}
+input{
+    margin-bottom: 15px;
+}

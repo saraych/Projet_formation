@@ -1,0 +1,27 @@
+.for{
+    width: 50%;
+    padding-top: 79px;
+    
+    margin-left: 25%;
+}
+fieldset{
+    margin-top: 20%;
+}
+input{
+    height: 20px;
+    width: 
+   
+    font-size:10px;
+    font-family:"logo";
+    margin-bottom:8px;
+    border-radius:4px;
+    padding-left:3px;
+}
+.bouton{
+    margin-left: 40%;
+    margin-top:15px;
+    
+}
+h2{
+    text-align: center;
+}
