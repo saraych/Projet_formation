@@ -2,8 +2,14 @@
     require ("../Data/pdo.php");
     extract($_POST);
 
+
+if(empty($password)){
+    echo 'il manque le mot de passe ';
+}
+
     if (empty($name) || empty($pname) || empty($adress)||empty($city)||empty($postalCode)||empty($age)||empty($pseudo)||empty($password)||empty($mail))
         echo "<h3> Champs vide veuillez tout remplir </h3>";
+
     else
     {    
         $name = $_POST['name'];
@@ -15,6 +21,12 @@
         $pseudo= $_POST['pseudo'];
         $mail = $_POST['mail'];
         $password = $_POST['password'];
+$passwordcrypt = crypt($_POST['password'], '$2a$07$302838711915bef2db65cc$');
+        /*$salt = '$2y$11$'.substr(bin2hex(openssl_random_pseudo_bytes(32)), 0, 22);
+        $passwordhash = crypt($password, $salt);
+        Voir la documentation de crypt() : http://devdocs.io/php/function.crypt
+        */
+        
    
    $req = $dbh->prepare('INSERT INTO user(name,pname,adress,city,postalCode,age,pseudo,mail,password) VALUES(
       :name, :pname, :adress, :city, :postalCode, :age, :pseudo, :mail, :password
@@ -28,9 +40,10 @@
      $req->bindValue(":age",$age,PDO::PARAM_INT);
      $req->bindValue(":pseudo",$pseudo,PDO::PARAM_STR);
      $req->bindValue(":mail",$mail,PDO::PARAM_STR);
-     $req->bindValue(":password",$password,PDO::PARAM_STR);
+    /* $req->bindValue(":password",$passwordhash,PDO::PARAM_STR);*/
+     $req->bindValue(":password",$passwordcrypt,PDO::PARAM_STR);
      
-echo "name = " .$name;
+        echo "name = " .$name;
         echo "<br/>pname = " .$pname;
         echo "<br/>adress = " .$adress;
         echo "<br/>city = " .$city;
@@ -38,7 +51,7 @@ echo "name = " .$name;
         echo "<br/>age=".$age;
         echo "<br/>pseudo=".$pseudo;
         echo "<br/>mail=".$mail;
-        echo"<br/>password=".$password;
+        echo"<br/>password=".$passwordcrypt;
         
     $req->execute();
 
